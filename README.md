@@ -76,8 +76,8 @@ curl https://api.openai.com/v1/chat/completions \
 例如：
 ```json
 [
-  {“role”: “system”, “content”: “You are a helpful assistant that translates English to French.”},
-  {“role”: “user”, “content”: ‘Translate the following English text to French: “{text}”’}
+  {"role": "system", "content": "You are a helpful assistant that translates English to French."},
+  {"role": "user", "content": 'Translate the following English text to French: "{text}"'}
 ]
 ```
 知道了这些基本就可以跑通GPT流程了，其他role可以稍后优化时来做。
