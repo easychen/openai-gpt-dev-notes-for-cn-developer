@@ -1,0 +1,6 @@
+[book]
+authors = ["Easy"]
+language = "en"
+multilingual = false
+src = "src"
+title = "OpenAI/GPT开发笔记"
