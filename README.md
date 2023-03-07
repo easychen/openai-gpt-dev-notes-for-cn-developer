@@ -2,7 +2,9 @@
 
 > 一个国内开发者的OpenAI/GPT的笔记
 
-被问过好多回，于是写个文档。本文希望用尽可能少的内容，讲清楚开发一个OpenAI/GPT应用必然用到的知识。
+最近都在问，于是写个文档。本文希望用尽可能少的内容，讲清楚开发一个OpenAI/GPT应用必然用到的知识。
+
+欢迎PR补充。
 
 ### AI/Automation开发交流群
 
@@ -78,7 +80,17 @@ curl https://api.openai.com/v1/chat/completions \
   {“role”: “user”, “content”: ‘Translate the following English text to French: “{text}”’}
 ]
 ```
-知道了这些基本就可以跑通GPT流程了，其他role可以稍后优化时来做。接口的其他参数可以看截图。
+知道了这些基本就可以跑通GPT流程了，其他role可以稍后优化时来做。
+
+### Stream 参数
+
+这里单独说一下 stream 参数，当它设置为 true 时，API 会以 SSE（ Server Side Event ）方式返回内容。
+
+SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一个 `header("Content-Type: text/event-stream")` ， 然后持续不断地输出内容直到完成。如果不是做实时聊天，建议直接false掉。
+
+### 其他参数
+
+接口的其他参数可以看[官方文档](https://platform.openai.com/docs/api-reference/chat)，访问不了的同学可以看我做的截图。
 
 ![](images/20230307143748.png)
 ![](images/20230307143831.png)
@@ -146,6 +158,8 @@ curl https://api.openai.com/v1/chat/completions \
 注册完成后，进入[API页面](https://openai.com/api/) 创建Key，然后就可以使用了。
 
 这个方案目前可行，是因为OpenAI给每个新用户提供了18美金的免费额度。但是一旦不再提供，就会面临充值的问题。目前OpenAI不接受中国信用卡，因此还必须准备一个海外信用卡。也就是说，要长久稳定的使用，必须有海外信用卡。
+
+以前有财付通的海外虚拟信用卡，后来服务下线了。最近看了下，很多500RMB起，还只支持电商网站，感觉不太靠谱 🤣
 
 ### 访问OpenAI API
 
