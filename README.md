@@ -11,6 +11,21 @@
 
 ![](images/20230307160048.png)
 
+目录
+=================
+
+
+* [ChatGPT &amp;&amp; OpenAI 的关系](#chatgpt--openai-的关系)
+* [OpenAI API 接口能做什么](#openai-api-接口能做什么)
+* [chat completions 接口如何使用？](#chat-completions-接口如何使用)
+* [chat completions 接口如何计费？](#chat-completions-接口如何计费)
+* [chat completions 接口能做什么 ①](#chat-completions-接口能做什么-)
+* [chat completions 接口能做什么 ②](#chat-completions-接口能做什么--1)
+* [如何解决国内用户无法注册OpenAI账号、无法访问OpenAI接口的问题？](#如何解决国内用户无法注册openai账号无法访问openai接口的问题)
+    * [注册OpenAI](#注册openai)
+    * [访问OpenAI API](#访问openai-api)
+    * [通过第三方接口访问](#通过第三方接口访问)
+
 
 ## ChatGPT && OpenAI 的关系
 
@@ -138,15 +153,13 @@ curl https://api.openai.com/v1/chat/completions \
 
 ![](images/20230307153602.png)
 
-因此你需要架设代理来访问OpenAI 接口。最简单的方式是通过 Cloudflare 或者 腾讯云函数来部署代理。
+因此你需要架设代理来访问OpenAI 接口。你可以将整个服务器代理到海外网络，或者只是简单的通过 Cloudflare 或者 腾讯云函数来部署API代理。
 
 相对来说，我觉得腾讯云香港可能稳定点，[教程可以看这里](https://github.com/easychen/openai-api-proxy/blob/master/FUNC.md)
 
 ![](images/20230307155459.png)
 
-
-
-当然，有同学说腾讯云的 ApiGateway 直接就能代理，但我测试了下没成功。
+需要注意的是，部分API代理不支持SSE，因此不能实时返回内容。当然，有同学说腾讯云的 ApiGateway 直接就能代理，但我测试了下没成功。
 
 ### 通过第三方接口访问
 
