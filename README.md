@@ -88,6 +88,8 @@ curl https://api.openai.com/v1/chat/completions \
 
 SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一个 `header("Content-Type: text/event-stream")` ， 然后持续不断地输出内容直到完成。如果不是做实时聊天，建议直接false掉。
 
+> 开启stream 后，将不会返回 usage 信息，这对精准计费有影响
+
 ### 其他参数
 
 接口的其他参数可以看[官方文档](https://platform.openai.com/docs/api-reference/chat)，访问不了的同学可以看我做的截图。
@@ -122,13 +124,26 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 
 虽然 `chat completions` 看起来像是一个聊天接口，但接口设计上并没有为聊天优化，因为这个接口是记不住上下文的。
 
-为了让对话具有连续性，我们每次请求需要带上上次的聊天记录。你可以使用这个第三方库，它可以自动帮你发送聊天记录（通过指定对话的`parentMessageId`）实现：
+为了让对话具有连续性，我们每次请求需要带上上次的聊天记录。有多种方式解决这个问题，一个是直接在message参数中加上聊天记录。其中，GPT返回的内容用 `assistant` role。
+
+```json
+[
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Who won the world series in 2020?"},
+        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+        {"role": "user", "content": "Where was it played?"}
+    ]
+```
+
+可以使用这个第三方库，它可以自动帮你发送聊天记录（通过指定对话的`parentMessageId`）实现：
 
 1. <https://github.com/transitive-bullshit/chatgpt-api>
 
 ![](images/20230307150942.png)
 
 在加上对话记录后，`chat completions` 接口就可以制作一个看起来有智能的聊天应用了。
+
+
 
 > 如果你要在国内运营聊天机器人之类的话，请记得将内容通过文本内容审核接口进行审核，否则很可能导致被封。
 
