@@ -128,14 +128,14 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 
 ```json
 [
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Who won the world series in 2020?"},
-        {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
-        {"role": "user", "content": "Where was it played?"}
-    ]
+     {"role": "system", "content": "You are a helpful assistant."},
+     {"role": "user", "content": "Who won the world series in 2020?"},
+     {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+     {"role": "user", "content": "Where was it played?"}
+ ]
 ```
 
-可以使用这个第三方库，它可以自动帮你发送聊天记录（通过指定对话的`parentMessageId`）实现：
+另一个方式是使用第三方库，比如`chatgpt-api`，它可以自动帮你发送聊天记录（通过指定对话的`parentMessageId`实现）：
 
 1. <https://github.com/transitive-bullshit/chatgpt-api>
 
