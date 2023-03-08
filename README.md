@@ -71,7 +71,7 @@ curl https://api.openai.com/v1/chat/completions \
 1. max_tokens: 选填，指定生成回答的最大长度。
 1. stream: 选填，是否按流的方式发送内容。
 
-其中 message的格式为：`{"role","content"}`。一般用 `user` 发送用户问题；`system` 发送给模型提示信息。
+其中 messages的格式为：`{"role","content"}`。一般用 `user` 发送用户问题；`system` 发送给模型提示信息。
 
 例如：
 ```json
@@ -124,7 +124,7 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 
 虽然 `chat completions` 看起来像是一个聊天接口，但接口设计上并没有为聊天优化，因为这个接口是记不住上下文的。
 
-为了让对话具有连续性，我们每次请求需要带上上次的聊天记录。有多种方式解决这个问题，一个是直接在message参数中加上聊天记录。其中，GPT返回的内容用 `assistant` role。
+为了让对话具有连续性，我们每次请求需要带上上次的聊天记录。有多种方式解决这个问题，一个是直接在messages参数中加上聊天记录。其中，GPT返回的内容用 `assistant` role。
 
 ```json
 [
