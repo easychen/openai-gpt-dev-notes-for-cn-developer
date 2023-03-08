@@ -206,6 +206,13 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 1. 不支持 stream 参数，因此只能一次性返回内容
 1. 不支持微信充值，价格比官方略高
 
+## 如何知道 OpenAI 接口状态
+
+OpenAI官方提供了一个[状态页](https://status.openai.com/)，虽然小故障不怎么显示，但大面积宕机时能看到公告。
+
+![image](https://user-images.githubusercontent.com/1294760/223604103-4093bdd4-4455-4f55-a294-fb7003325000.png)
+
+
 
 
 
