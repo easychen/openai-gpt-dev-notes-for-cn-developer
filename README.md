@@ -88,7 +88,21 @@ curl https://api.openai.com/v1/chat/completions \
 
 SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一个 `header("Content-Type: text/event-stream")` ， 然后持续不断地输出内容直到完成。如果不是做实时聊天，建议直接false掉。
 
-> 开启stream 后，将不会返回 usage 信息，这对精准计费有影响
+需要注意的是，开启stream 后，将不会返回 usage 信息，这对精准计费有影响
+
+```
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"我"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"没有"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"当前"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"日期"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"的"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"实"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"时"},"index":0,"finish_reason":null}]}
+{"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"信息"},"index":0,"finish_reason":null}]}
+```
+
+
+> 一个猜想：通过观察SSE返回的内容，感觉它每次很可能是一次返回一个Token，如果这样的话，直接Count Event数量就可以知道Token数量了，但依然需要自己计算 input 部分的 Token。
 
 ### 其他参数
 
