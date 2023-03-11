@@ -9,7 +9,7 @@
 ### AI/Automation开发交流群
 
 1. 电报群 <https://t.me/+s-5piM3koEphNDY1>
-1. 微信群 
+1. 微信②群 
 
 ![](images/20230308122318.png)
 
@@ -27,6 +27,7 @@
     * [注册OpenAI](#注册openai)
     * [访问OpenAI API](#访问openai-api)
     * [通过第三方接口访问](#通过第三方接口访问)
+* [如何知道 OpenAI 接口状态](#如何知道 OpenAI 接口状态)
 
 
 ## ChatGPT && OpenAI 的关系
