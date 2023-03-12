@@ -13,21 +13,27 @@
 
 ![](images/20230308122318.png)
 
+
 目录
 =================
 
-
-* [ChatGPT &amp;&amp; OpenAI 的关系](#chatgpt--openai-的关系)
-* [OpenAI API 接口能做什么](#openai-api-接口能做什么)
-* [chat completions 接口如何使用？](#chat-completions-接口如何使用)
-* [chat completions 接口如何计费？](#chat-completions-接口如何计费)
-* [chat completions 接口能做什么 ①](#chat-completions-接口能做什么-)
-* [chat completions 接口能做什么 ②](#chat-completions-接口能做什么--1)
-* [如何解决国内用户无法注册OpenAI账号、无法访问OpenAI接口的问题？](#如何解决国内用户无法注册openai账号无法访问openai接口的问题)
-    * [注册OpenAI](#注册openai)
-    * [访问OpenAI API](#访问openai-api)
-    * [通过第三方接口访问](#通过第三方接口访问)
-* [如何知道 OpenAI 接口状态](#如何知道 OpenAI 接口状态)
+* [如何快速开发一个OpenAI/GPT应用](#如何快速开发一个openaigpt应用)
+      * [AI/Automation开发交流群](#aiautomation开发交流群)
+   * [ChatGPT &amp;&amp; OpenAI 的关系](#chatgpt--openai-的关系)
+   * [OpenAI API 接口能做什么](#openai-api-接口能做什么)
+   * [chat completions 接口如何使用？](#chat-completions-接口如何使用)
+      * [Stream 参数](#stream-参数)
+      * [其他参数](#其他参数)
+   * [Chat completions 接口如何计费？](#chat-completions-接口如何计费)
+   * [chat completions 接口能做什么 ①](#chat-completions-接口能做什么-)
+   * [chat completions 接口能做什么 ②](#chat-completions-接口能做什么--1)
+   * [国内是否可以上线运营GPT相关业务？](#国内是否可以上线运营gpt相关业务)
+   * [如何解决国内用户无法注册OpenAI账号、无法访问OpenAI接口的问题？](#如何解决国内用户无法注册openai账号无法访问openai接口的问题)
+      * [注册OpenAI](#注册openai)
+      * [访问OpenAI API](#访问openai-api)
+      * [通过第三方接口访问](#通过第三方接口访问)
+   * [如何避免 OpenAI 封禁账号 API权限](#如何避免-openai-封禁账号-api权限)
+   * [如何知道 OpenAI 接口状态](#如何知道-openai-接口状态)
 
 
 ## ChatGPT && OpenAI 的关系
@@ -176,6 +182,12 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 1. Key问题：开发者的Key肯定是不够用的，因此一般会让使用者填写自己的Key。但是国内用户没有海外手机号，无法申请key;申请下来API直接访问也不通，解决方案有几种，后边专门讲
 1. Token计算和限制问题：如果使用者用自己的Key，为了提升体验，我们可以提供一个Token计算，让用户知道自己的会花多少钱。另外如果你没有用第三方那个库来分拆，那么一次请求的内容不要超过 max_tokens 的限制。这个值一般是 4096。
 
+## 国内是否可以上线运营GPT相关业务？
+
+就目前而言，我了解到的情况是大部分企业没有收到明确禁止运营GPT相关业务的通知，但在国内运营要做好内容安全，比如对接口返回的内容再过一层内容审核。否则如果在应用中出现违规内容被举报，就会被封禁。
+
+但这是一个随时可能变化的情况，我们准备了[一个issue](https://github.com/easychen/openai-api-proxy/issues/11)供大家反馈。
+
 ## 如何解决国内用户无法注册OpenAI账号、无法访问OpenAI接口的问题？
 
 两个思路，一个是绕道海外去注册，通过代理使用服务；另一个是直接使用第三方代理API服务。前者可以暂时解决当前的问题；后者更方便省心。
@@ -212,14 +224,26 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 主要的优点：
 
 1. 基本兼容原有接口，只需要改下 API endpoint 和 Key
-1. 支持国内卡充值，提供最小0.5美金的测试档位，试用很方便
 1. 接口国内直接可以访问，无需架设代理
+1. 支持微信和国内卡充值，提供最小0.5美金/3.5人民币的测试档位，GitHub注册还有50点免费额度试用
+1. 添加 moderation 参数，可以返回内容审核结果，省事
 1. 推荐可以获得点数，这里是我的[推荐链接](https://api2d.com/r/186008)
 
 缺点：
 
 1. 不支持 stream 参数，因此只能一次性返回内容
-1. 不支持微信充值，价格比官方略高，大概1.5倍
+1. 目前只支持 chat 和 embeddings 接口
+1. 价格比官方略高，大概1.5倍，当然这个包含了流量中转的成本
+
+> 利息相关：api2d这个产品是作者加拿大的朋友做的，而且作为早期用户一直在重度使用
+
+## 如何避免 OpenAI 封禁账号 API权限
+
+最近得到反馈，很多架设香港代理的账号收到了邮件被禁用了权限。经过群里大家的讨论，总结的经验如下：
+
+1. 不要使用 OpenAI 不服务地区的代理
+1. 虚拟海外手机号更可能导致账号被封
+1. 绑定信用卡可以大幅提升账号存活率
 
 ## 如何知道 OpenAI 接口状态
 
