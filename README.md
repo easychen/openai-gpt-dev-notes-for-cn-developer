@@ -18,7 +18,6 @@
 =================
 
 * [如何快速开发一个OpenAI/GPT应用](#如何快速开发一个openaigpt应用)
-      * [AI/Automation开发交流群](#aiautomation开发交流群)
    * [ChatGPT &amp;&amp; OpenAI 的关系](#chatgpt--openai-的关系)
    * [OpenAI API 接口能做什么](#openai-api-接口能做什么)
    * [chat completions 接口如何使用？](#chat-completions-接口如何使用)
