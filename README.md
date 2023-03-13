@@ -9,9 +9,9 @@
 ### AI/Automation开发交流群
 
 1. 电报群 <https://t.me/+s-5piM3koEphNDY1>
-1. 微信②群 
+1. 微信③群 
 
-![](images/20230308122318.png)
+![](images/20230313223714.png)
 
 
 目录
