@@ -11,7 +11,7 @@
 1. 电报群 <https://t.me/+s-5piM3koEphNDY1>
 1. 微信③群 
 
-![](images/20230313223714.png)
+![](images/20230313223714.jpeg)
 
 
 目录
