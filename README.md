@@ -210,11 +210,11 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 
 因此你需要架设代理来访问OpenAI 接口。你可以将整个服务器代理到海外网络，或者只是简单的通过 Cloudflare 或者 腾讯云函数来部署API代理。
 
-相对来说，我觉得腾讯云香港可能稳定点，[教程可以看这里](https://github.com/easychen/openai-api-proxy/blob/master/FUNC.md)
+如果你准备使用腾讯云函数，[教程可以看这里](https://github.com/easychen/openai-api-proxy/blob/master/FUNC.md)
 
 ![](images/20230307155459.png)
 
-需要注意的是，部分API代理不支持SSE，因此不能实时返回内容。当然，有同学说腾讯云的 ApiGateway 直接就能代理，但我测试了下没成功。
+需要注意的是，腾讯云API代理会将长连接内容一次性返回，因此流式体验不明显。当然，有同学说腾讯云的 ApiGateway 直接就能代理，但我测试了下没成功。
 
 ### 通过第三方接口访问
 
@@ -230,7 +230,7 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 
 缺点：
 
-1. 不支持 stream 参数，因此只能一次性返回内容
+1. ~~不支持 stream 参数~~，已经支持 stream
 1. 目前只支持 chat 和 embeddings 接口
 1. 价格比官方略高，大概1.5倍，当然这个包含了流量中转的成本
 
