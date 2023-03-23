@@ -75,7 +75,7 @@ curl https://api.openai.com/v1/chat/completions \
 
 1. model: 必填，建议使用 `gpt-3.5-turbo`，便宜。计费后边会讲。
 1. messages: AI 进行提问的问题或信息。
-1. max_tokens: 选填，指定生成回答的最大长度。
+1. max_tokens: 选填，指定输入message和生成回答合计的最大Token数。
 1. stream: 选填，是否按流的方式发送内容。
 
 其中 messages的格式为：`{"role","content"}`。一般用 `user` 发送用户问题；`system` 发送给模型提示信息。
