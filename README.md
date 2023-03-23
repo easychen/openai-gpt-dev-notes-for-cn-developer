@@ -39,6 +39,7 @@
 
 ChatGPT 是 OpenAI 推出的应用，使用的是最新的模型；而 OpenAI 开放接口的模型是 gpt-3.5-turbo ，这个模型比 ChatGPT 应用要笨。但 ChatGPT 用的最新模型没有接口，只能通过无头浏览器等方式来使用（不稳定）。
 
+> 更新：目前已经开放了 gpt-4 ，当前尚未提供图片输入接口，使用方式和 gpt-3.5-turbo 一致，只需要将 model 参数更换为 gpt-4 ，注意 gpt-4 的 max tokens 为 8k （gpt-4-32k 为 32k），Token 价格是 3.5 的 15~30 倍。
 
 ## OpenAI API 接口能做什么
 
@@ -107,8 +108,6 @@ SSE 本质上还是 HTTP 协议，只不过它是一个长链接，先输出一�
 {"id":"chatcmpl-6s3hNohxOliHi8zR7m5UTrLm4cWWc","object":"chat.completion.chunk","created":1678341949,"model":"gpt-3.5-turbo-0301","choices":[{"delta":{"content":"信息"},"index":0,"finish_reason":null}]}
 ```
 
-
-> 一个猜想：通过观察SSE返回的内容，感觉它每次很可能是一次返回一个Token，如果这样的话，直接Count Event数量就可以知道Token数量了，但依然需要自己计算 input 部分的 Token。
 
 ### 其他参数
 
